@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { Color } from '../../../core/models/color.model';
+import { Color } from '@core/models/color.model';
 
 @Component({
   selector: 'app-color',

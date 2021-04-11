@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Color } from '../../../core/models/color.model';
+import { Color } from '@core/models/color.model';
 
-import { SearchService } from '../../../core/services/products/search.service';
+import { SearchService } from '@core/services/products/search.service';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
