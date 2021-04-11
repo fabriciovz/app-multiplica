@@ -2,29 +2,18 @@
   <mat-card-header>
     <mat-card-title>
       <p>
-        {{ product.price | currency: "CLP" }}
-        <mat-icon
-          [matBadge]="'-' + product.discount + '%'"
-          matBadgeColor="warn"
-          *ngIf="product.discount != 0"
-          >redeem</mat-icon
+        {{ product.name }}
         >
       </p>
     </mat-card-title>
-
     <mat-card-subtitle>
-      <div *ngIf="product.discount != 0">
-        Antes: {{ product.old_price | currency }}
-      </div>
     </mat-card-subtitle>
   </mat-card-header>
   <div class="crop-image">
-    <img [src]="'https://' + product.image" alt="" />
   </div>
   <mat-card-content>
     <p>
-      <b>{{ product.brand | uppercase }}</b>
-      {{ product.description | slice: 0:10 }}
+      <b>{{ product.pantone | uppercase }}</b>
       <br />
       item: {{ product.id }}
     </p>
