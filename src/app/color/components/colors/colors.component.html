@@ -1,0 +1,8 @@
+<br>
+<div class="product-grid">
+  <app-color
+    *ngFor="let product of this.products$ | async"
+    [product]="product">
+  </app-color>
+</div>
+<br><br><br>
