@@ -1,0 +1,23 @@
+/*Footer*/
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-indigo);
+
+.footer-class {
+    /*position: absolute;*/
+    display: table; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    background-color: #f5f5f5;
+    color: white;
+    background-color: mat-color($primary);
+    margin-top: 10px;
+}
+p {
+    font-size:0.9rem;
+    text-align:center; 
+    vertical-align: middle;
+    display: table-cell;   
+  }
