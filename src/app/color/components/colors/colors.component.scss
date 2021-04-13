@@ -1,11 +1,10 @@
-/*Styles for products - Display*/
-.product-grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 50px 20px;
 }
 @media (min-width: 576px) {
-  .product-grid {
+  .grid {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px 20px;
     height: 10%;
