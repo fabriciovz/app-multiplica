@@ -1,25 +1,23 @@
-
-.crop-image {
-  display: block;
-  height: 300px;
-  width: 100%;
-  img {
-    object-fit: contain;
-    height: 100%;
-    width: 100%;
-    object-position: center;
-  }
+.mat-card{
+  padding: 0px;
 }
 
-.mat-badge-content {
-    width: auto;
-    display: grid;
-    min-width: 32px;
-    min-height: 28px;
-    text-align: center;
-    align-items: center;
-    padding: 5px 3px;
-    top: -20px;
-    right: -22px;
+.mat-card-content{
+  padding:0px !important;
 }
+.title{
+  padding-left: 5px;
+  padding-top: 3px;
+  text-align: left;
+}
+.content{
+  padding-top: 10px;
+  padding-bottom: 10px;  
+  text-align: center;
 
+}
+.finish{
+  padding-right: 5px;
+  padding-bottom: 3px;  
+  text-align: right;
+}

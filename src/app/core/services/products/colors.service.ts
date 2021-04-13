@@ -1,15 +1,69 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 // import { Product } from "./../../models/product.model";
 import { environment } from '../../../../environments/environment';
+import { throwError } from "rxjs";
+import { catchError, retry } from "rxjs/operators";
+
+import { Color } from "../../models/color.model";
+
 
 @Injectable({
   providedIn: "root",
 })
-export class ProductsService {
+export class ColorsService {
  
   constructor(
     private http: HttpClient
   ) {}
+
+  //wihout paging
+  getAll() {
+    return this.http.get<any>(`${environment.url_api}/colores`)
+    .pipe(catchError(this.hanleError)
+    );
+  }
+  //with paging
+  get() {
+    //TODO: paging managing
+    return this.http.get<any>(`${environment.url_api}/colores/?page=1&sort=id&dir=1&limit=6&soft=false`)
+    .pipe(
+      retry(3),
+      catchError(this.hanleError)
+    );
+  }
+  getByID(id: string) {
+    return this.http.get<Color[]>(`${environment.url_api}/colores/${id}`)
+    .pipe(
+      retry(3),
+      catchError(this.hanleError)
+    );
+  }
+  create(color: Color) {
+    return this.http.post(`${environment.url_api}/colores`,color)
+    .pipe(
+      retry(3),
+      catchError(this.hanleError)
+    );
+  }
+  update(id: string, changes: Partial<Color>) {
+    return this.http.put(`${environment.url_api}/colores//${id}`,changes)
+    .pipe(
+      retry(3),
+      catchError(this.hanleError)
+    );
+  }
+  delete() {
+    return this.http.get<Color[]>(`${environment.url_api}/colores`)
+    .pipe(
+      retry(3),
+      catchError(this.hanleError)
+    );
+  }
+
+  private hanleError(error: HttpErrorResponse) {
+    console.error(error);
+    return throwError("something bad happened")
+  }
 }

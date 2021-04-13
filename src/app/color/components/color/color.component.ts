@@ -15,7 +15,7 @@ import { Color } from '@core/models/color.model';
 })
 export class ColorComponent implements OnInit {
 
-  @Input() product: Color = { _id: '', id: '', name:'', color:'', pantone:'', year:0};
+  @Input() color: Color = { _id: '', id: '', name:'', color:'', pantone:'', year:0 };
 
   @Output() productClicked: EventEmitter<any> = new EventEmitter();
 

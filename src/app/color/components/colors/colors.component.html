@@ -1,8 +1,12 @@
 <br>
-<div class="product-grid">
+<div class="grid">
   <app-color
-    *ngFor="let product of this.products$ | async"
-    [product]="product">
+  *ngFor="let color of colors"
+  [color]="color">
   </app-color>
 </div>
+<!--<mat-paginator [length]="length"
+[pageSize]="pageSize"
+>
+</mat-paginator>-->
 <br><br><br>

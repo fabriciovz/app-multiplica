@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Color } from '@core/models/color.model';
 
-import { SearchService } from '@core/services/products/search.service';
+import { ColorsService } from '@core/services/products/colors.service';
+
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -15,25 +16,33 @@ import { Observable } from 'rxjs';
 })
 export class ColorsComponent implements OnInit {
 
+  colors: Color[] = [];
+   // MatPaginator Inputs
+   length = 5;
+   pageSize = 5;
 
-  total$: Observable<number>;
-
-  products$: Observable<Color[]>;
-
+   
   constructor(    
-    private searchService: SearchService
+    private colorsService: ColorsService
 
     ) { 
 
-      this.total$ = this.searchService.productsSearch$
-      .pipe(
-        map(products => products.length)
-      );
-
-      this.products$ = this.searchService.productsSearch$;
     }
 
   ngOnInit() {
+    this.fetchColors();
+  }
+
+  fetchColors(){
+    this.colorsService.getAll()
+    .subscribe(colors => {
+      this.colors = colors.data;
+      this.length = colors.data.length;
+      //console.log(colors.data);
+    });
+  }
+  paging(){
+    console.log("hoaaaa")
   }
 
 }
