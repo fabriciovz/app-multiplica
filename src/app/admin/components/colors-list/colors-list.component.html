@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+<a mat-raised-button routerLink="create">Crear nuevo color</a>
+<table mat-table [dataSource]="colors" class="mat-elevation-z8 colors-table" >
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let color"> {{color.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let color"> {{color.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="color">
+    <th mat-header-cell *matHeaderCellDef> Color </th>
+    <td mat-cell *matCellDef="let color"> {{color.color}} </td>
+  </ng-container>
+  <ng-container matColumnDef="pantone">
+    <th mat-header-cell *matHeaderCellDef> Pantone </th>
+    <td mat-cell *matCellDef="let color"> {{color.pantone}} </td>
+  </ng-container>
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef> Año </th>
+    <td mat-cell *matCellDef="let color"> {{color.year}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let color"> 
+      <a mat-raised-button [routerLink]="['edit', color._id]">Editar</a>
+      <button mat-raised-button color="warn" (click)="deleteItem(color._id)">Eliminar</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>

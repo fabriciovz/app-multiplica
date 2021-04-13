@@ -3,10 +3,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from "rxjs";
-import { map } from 'rxjs/operators';
+import { map,tap } from 'rxjs/operators';
 
 import { UserLogin } from "../models/user-login.model";
 import { User } from "../models/user.model";
+
+import { HttpHeaders } from '@angular/common/http';
+import { TokenService } from './token.service';
 
 
 @Injectable({
@@ -18,7 +21,9 @@ export class AuthService {
   public user: Observable<User>;
 
 
-  constructor(private http: HttpClient, private router: Router,
+  constructor(private http: HttpClient, 
+    private router: Router,
+    private tokenService: TokenService
     ) { 
     let user_local = <string>localStorage.getItem('user');
     this.userSubject = new BehaviorSubject<User>(JSON.parse(user_local));
@@ -26,20 +31,35 @@ export class AuthService {
   }
 
   login(user: UserLogin){
-    return this.http.post<User>(`${environment.url_api}/auth/token`,user)
-    .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
-    }));
+
+    let authorizationData = 'Basic ' + btoa(user.username + ':' + user.password);
+
+    const headerOptions = {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': authorizationData
+        })
+    };
+
+    return this.http.post<any>(`${environment.url_api}/auth/token`,{}, headerOptions )
+    .pipe(
+      tap((data: {access_token: string}) => {
+          const token = 'Bearer '+ data.access_token;
+          this.tokenService.saveToken(token);   
+          //this.userSubject.next(user);
+      }
+      ));
+    // .pipe(map(user => {
+    //     // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //     localStorage.setItem('user', JSON.stringify(user));
+    //     this.userSubject.next(user);
+    //     return user;
+    // }));
   }
   logout() {
-    // remove user from local storage and set current user to null
-    let user: User = {username: '0',password:'0'};
-    localStorage.removeItem('user');
-    this.userSubject.next(user);
-    this.router.navigate(['/login']);
+    this.tokenService.removeToken();
+    //this.userSubject.next(user);
+    this.router.navigate(['login']);
   }
   public get userValue(): User {
     return this.userSubject.value;
