@@ -54,8 +54,8 @@ export class ColorsService {
       catchError(this.hanleError)
     );
   }
-  delete() {
-    return this.http.get<Color[]>(`${environment.url_api}/colores`)
+  delete(id: string) {
+    return this.http.delete<Color[]>(`${environment.url_api}/colores/${id}`)
     .pipe(
       retry(3),
       catchError(this.hanleError)

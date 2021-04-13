@@ -8,6 +8,8 @@
       "@material/*" : ["src/app/material/*"],
       "@shared/*" : ["src/app/shared/*"],
       "@color/*" : ["src/app/color/*"],
+      "@auth/*" : ["src/app/auth/*"],
+      "@admin/*" : ["src/app/admin/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

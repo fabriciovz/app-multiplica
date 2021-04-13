@@ -4,11 +4,6 @@ import { Color } from '@core/models/color.model';
 
 import { ColorsService } from '@core/services/products/colors.service';
 
-
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
-
 @Component({
   selector: 'app-colors',
   templateUrl: './colors.component.html',
