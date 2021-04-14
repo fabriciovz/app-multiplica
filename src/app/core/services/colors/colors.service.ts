@@ -29,41 +29,40 @@ export class ColorsService {
     //TODO: paging managing
     return this.http.get<any>(`${environment.url_api}/colores/?page=1&sort=id&dir=1&limit=6&soft=false`)
     .pipe(
-      retry(3),
+      retry(1),
       catchError(this.hanleError)
     );
   }
   getByID(id: string) {
     return this.http.get<Color[]>(`${environment.url_api}/colores/${id}`)
     .pipe(
-      retry(3),
+      retry(1),
       catchError(this.hanleError)
     );
   }
   create(color: Color) {
     return this.http.post(`${environment.url_api}/colores`,color)
     .pipe(
-      retry(3),
+      retry(1),
       catchError(this.hanleError)
     );
   }
   update(id: string, changes: Partial<Color>) {
     return this.http.put(`${environment.url_api}/colores//${id}`,changes)
     .pipe(
-      retry(3),
+      retry(1),
       catchError(this.hanleError)
     );
   }
   delete(id: string) {
     return this.http.delete<Color[]>(`${environment.url_api}/colores/${id}`)
     .pipe(
-      retry(3),
+      retry(1),
       catchError(this.hanleError)
     );
   }
 
   private hanleError(error: HttpErrorResponse) {
-    console.error(error);
     return throwError("something bad happened")
   }
 }

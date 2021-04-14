@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ColorsService } from '@core/services/products/colors.service';
+import { ColorsService } from '@core/services/colors/colors.service';
 import { Color } from '@core/models/color.model';
 
 @Component({
@@ -29,8 +29,6 @@ export class ColorsListComponent implements OnInit {
 
   }
   deleteItem(id: string) {
-
-    console.log(id);
     this.colorsService.delete(id)
     .subscribe(rta => {
       this.fetchColors();
