@@ -1,0 +1,18 @@
+# Use the production image as base image
+FROM fabribraguev/app-multiplica
+
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
+RUN apt-get update && apt-get install --no-install-recommends -y google-chrome-stable
+# # Copy the test files
+# COPY tests tests
+# # Override the NODE_ENV environment variable to 'dev', in order to get required test packages
+# ENV NODE_ENV dev
+# # 1. Get test packages; AND
+# # 2. Install our test framework - mocha
+# RUN npm update && \
+#     npm install -g mocha
+# Override the command, to run the test instead of the application
+
+EXPOSE 9876
+CMD ng test --codeCoverage
