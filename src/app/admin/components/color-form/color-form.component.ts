@@ -34,7 +34,7 @@ export class ColorFormComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
-      if(this.id!=''){
+      if(this.id!='' && this.id!=undefined){
         this.colorsService.getByID(this.id)
         .subscribe((color: any) => {
           this.form.patchValue(color.data);
@@ -48,7 +48,7 @@ export class ColorFormComponent implements OnInit {
     if (this.form.valid) {
       const color = this.form.value;
 
-      if(this.id!=''){
+      if(this.id!='' && this.id!=undefined){
         this.colorsService.update(this.id, color)
         .subscribe((newColor) => {
           console.log(newColor);
