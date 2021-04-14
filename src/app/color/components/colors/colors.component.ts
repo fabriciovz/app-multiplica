@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Color } from '@core/models/color.model';
 
-import { ColorsService } from '@core/services/products/colors.service';
+import { ColorsService } from '@core/services/colors/colors.service';
 
 @Component({
   selector: 'app-colors',
@@ -17,12 +17,7 @@ export class ColorsComponent implements OnInit {
    pageSize = 5;
 
    
-  constructor(    
-    private colorsService: ColorsService
-
-    ) { 
-
-    }
+  constructor(private colorsService: ColorsService) {}
 
   ngOnInit() {
     this.fetchColors();
@@ -35,9 +30,6 @@ export class ColorsComponent implements OnInit {
       this.length = colors.data.length;
       //console.log(colors.data);
     });
-  }
-  paging(){
-    console.log("hoaaaa")
   }
 
 }

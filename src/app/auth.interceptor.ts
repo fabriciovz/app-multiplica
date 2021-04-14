@@ -33,7 +33,6 @@ export class AuthInterceptor implements HttpInterceptor {
           _: Observable<HttpEvent<any>>
         ) => {
           if (httpErrorResponse.status === 401) {
-            console.log("aqui en el 401");
             this.authService.logout();
           }
           return throwError(httpErrorResponse);

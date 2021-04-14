@@ -22,11 +22,11 @@ export class ColorComponent implements OnInit {
   today = new Date();
 
   constructor() {
-    console.log('1. constructor');
+    //console.log('1. constructor');
   }
 
   ngOnInit() {
-    console.log('3. ngOnInit');
+    //console.log('3. ngOnInit');
   }
 
 }

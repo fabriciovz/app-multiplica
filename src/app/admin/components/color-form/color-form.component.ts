@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 //import { MyValidators } from './../../../utils/validators';
-import { ColorsService } from '@core/services/products/colors.service';
+import { ColorsService } from '@core/services/colors/colors.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -51,7 +51,6 @@ export class ColorFormComponent implements OnInit {
       if(this.id!='' && this.id!=undefined){
         this.colorsService.update(this.id, color)
         .subscribe((newColor) => {
-          console.log(newColor);
           this.router.navigate(['./admin/colores']);
         });
 
@@ -59,7 +58,6 @@ export class ColorFormComponent implements OnInit {
       else {
         this.colorsService.create(color)
         .subscribe((newColor) => {
-          console.log(newColor);
           this.router.navigate(['./admin/colores']);
         });
       }
