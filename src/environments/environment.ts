@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  url_api: 'http://localhost:8024/api'
+  //url_api: 'http://192.168.0.3:8024/api'
+  url_api: 'https://api-multiplica.herokuapp.com/api'
+
 };
 
 /*

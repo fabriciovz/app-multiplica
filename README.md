@@ -1,27 +1,51 @@
-# AppMultiplica
+# App-Multiplica
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+This is an app developed in Angular 8 with Layer oriented architecture; its main purpose is giving a searching service.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+If you want to initialize the project, use this command (you'll create an image and container, then it run the docker container):
+```sh
+$ make app-init
+```
 
-## Code scaffolding
+If you only want to run the container, use this one:
+```sh
+$ make app-start
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you only want to stop the container, use this one:
+```sh
+$ make app-stop
+```
 
-## Build
+### Tests
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The Git repository includes *.spec.ts files for each component and service. Tests use karma and jasmine
 
-## Running unit tests
+Initializing environment:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```sh
+$ make app-init-test
+```
+If you want to only run tests, you have to run this command:
 
-## Running end-to-end tests
+```sh
+$ make app-run-test
+```
+You can go to http://0.0.0.0:9876/debug.html and check all passed tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Also you can check the results of the code coverage report:
 
-## Further help
+{direction to}/app-walmart/coverage/app-walmart/index.html
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Something went wrong?
+
+If you want to reset the container:
+```sh
+$ make app-reset
+```
+
+For more information, please have a look at the Makefile
+
